@@ -1,0 +1,42 @@
+--
+-- Script executed by the MSX Basic call interface: "CALL MSXARM"
+--
+
+-- Useful commands
+
+--
+-- Show the number of bytes currently in use by Lua
+--
+function showmem()
+   print(collectgarbage("count")*1024 .. " bytes")
+end
+
+--
+-- Performs a full garbage-collection cycle
+--
+function collect()
+   collectgarbage("collect")
+   showmem()
+end
+
+
+-- Prepare the environment
+
+print("MSXARM. Running \"luarc\" file")
+
+-- Alias
+poke=msx.poke8
+peek=msx.peek8
+out=msx.out8
+vpoke=msx.vpoke
+beep=msx.beep
+posit=msx.posit
+lptout=msx.lptout
+lptstat=msx.lptstat
+cls=msx.cls
+
+beep()
+
+-- Show the number of bytes currently in use by Lua
+showmem()
+
