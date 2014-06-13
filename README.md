@@ -1,1 +1,1 @@
-MSXARM filesystem embeded on mainboard. LUA scripts
+MSXARM filesystem embedded in the mainboard. LUA scripts
