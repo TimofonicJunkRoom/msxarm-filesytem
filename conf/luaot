@@ -1,0 +1,7 @@
+--
+-- Script executed when exiting from LUA shell
+--
+print("Exit to MSX Basic")
+msx.inifnk()
+msx.dspfnk()
+

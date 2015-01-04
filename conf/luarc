@@ -8,17 +8,36 @@
 -- Show the number of bytes currently in use by Lua
 --
 function showmem()
-   print(collectgarbage("count")*1024 .. " bytes")
+   print("Bytes currently in use by LUA: " .. collectgarbage("count")*1024)
 end
 
 --
 -- Performs a full garbage-collection cycle
 --
 function collect()
+   print("Garbage collecting...")
    collectgarbage("collect")
    showmem()
 end
 
+--
+-- Initialize the function key
+-- MSX LUA commands
+--
+function initfnk()
+   setfnk(0, "color\040\041")
+   setfnk(1, "cls()")
+   setfnk(2, "")
+   setfnk(3, "")
+   setfnk(4, "")
+   setfnk(5, "color\04015,4,7\041") -- MSX default 
+   setfnk(6, "color\04015,0,0\041")
+   setfnk(7, "list\040\041")
+   setfnk(8, "")
+   setfnk(9, "collect\040\041") -- Garbage collection
+
+   dspfnk()
+end
 
 -- Prepare the environment
 
@@ -28,15 +47,31 @@ print("MSXARM. Running \"luarc\" file")
 poke=msx.poke8
 peek=msx.peek8
 out=msx.out8
+
 vpoke=msx.vpoke
-beep=msx.beep
-posit=msx.posit
+
+
 lptout=msx.lptout
 lptstat=msx.lptstat
+
+initxt40 = msx.initxt40Exp
+initxt80 = msx.initxt80Exp
+color    = msx.setcolor
+posit=msx.posit
 cls=msx.cls
+
+beep=msx.beep
+
+setfnk = msx.setfnk
+dspfnk = msx.dspfnk
+erafnk = msx.erafnk
+
+chgcpu=msx.chgcpuExp
+
+--erafnk()
+initfnk()
 
 beep()
 
 -- Show the number of bytes currently in use by Lua
-showmem()
-
+collect()
