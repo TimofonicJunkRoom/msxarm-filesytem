@@ -8,7 +8,7 @@
 -- Show the number of bytes currently in use by Lua
 --
 function showmem()
-   print("Bytes currently in use by LUA: " .. collectgarbage("count")*1024)
+   print(string.format("Bytes currently in use by MSX LUA: %d", collectgarbage("count")*1024))
 end
 
 --
@@ -41,7 +41,7 @@ end
 
 -- Prepare the environment
 
-print("MSXARM. Running \"luarc\" file")
+print("Entering MSX LUA...")
 
 -- Alias
 poke=msx.poke8
@@ -74,4 +74,5 @@ initfnk()
 beep()
 
 -- Show the number of bytes currently in use by Lua
-collect()
+showmem()
+
